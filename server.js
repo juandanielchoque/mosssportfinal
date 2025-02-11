@@ -23,6 +23,11 @@ const competicionRoutes = require('./routes/competicionRoutes');
 const puntajesRoutes = require('./routes/puntajeRoutes');
 const estadisticaRoutes = require('./routes/estadisticaRoutes');
 
+const corsOptions = {
+  origin: 'https://moss-sport-frontend-final.vercel.app/', // Reemplaza con la URL de tu frontend en Vercel
+  optionsSuccessStatus: 200,
+};
+
 app.use(cors());
 app.set('db', db);
   app.use(bodyParser.json());
