@@ -1,7 +1,6 @@
 require('dotenv').config();
 const express = require('express');
 const cors = require('cors');
-const path = require('path');
 const bodyParser = require('body-parser');
 const app = express();
 const db = require('./config/db');
@@ -13,7 +12,7 @@ const partidoRoutes = require('./routes/partidoRoutes');
 const jugadorRoutes = require('./routes/jugadorRoutes');
 const authRoutes = require('./routes/authRoutes');
 const categoriaRoutes = require('./routes/categoriaRoutes');
-const disciplinaRoutes = require('./routes/disciplinaRoutes');
+const disciplinaRoutes = require('./routes/disciplinasRoutes');
 const resultadoRoutes = require('./routes/resultadoRoutes');
 const evidenciaRoutes = require('./routes/evidenciaRoutes');
 const torneoDisciplinaRoutes = require('./routes/torneoDisciplinaRoutes');
@@ -25,7 +24,7 @@ const estadisticaRoutes = require('./routes/estadisticaRoutes');
 
 app.use(cors());
 app.set('db', db);
-  app.use(bodyParser.json());
+app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.json({ limit: '50mb' }));
 app.use(express.urlencoded({ limit: '50mb', extended: true }));
@@ -47,13 +46,13 @@ app.use('/api/torneo-disciplinas', torneoDisciplinaRoutes);
 app.use('/api/disciplina-categorias', disciplinaCategoriaRoutes);
 app.use('/api/upload', uploadRoutes);
 
-app.listen(5000, () => {
-  console.log('Servidor iniciado en http://localhost:5000');
-  
-
- 
-  app.get('/test-db', (req, res) => {
+// Ruta de prueba de la API
+app.get('/test-db', (req, res) => {
     res.json({ message: "API funcionando correctamente" });
 });
-  
+
+// Iniciar servidor
+const PORT = process.env.PORT || 5000;
+app.listen(PORT, () => {
+  console.log(`Servidor iniciado en http://localhost:${PORT}`);
 });
