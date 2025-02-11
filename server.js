@@ -49,4 +49,11 @@ app.use('/api/upload', uploadRoutes);
 
 app.listen(5000, () => {
   console.log('Servidor iniciado en http://localhost:5000');
+  
+
+ 
+  app.get('/test-db', (req, res) => {
+    res.json({ message: "API funcionando correctamente" });
+});
+  
 });
