@@ -6,6 +6,11 @@ const bodyParser = require('body-parser');
 const app = express();
 const db = require('./config/db');
 
+app.use(cors({
+  origin: '*',
+  methods: ['GET', 'POST', 'PUT', 'DELETE'],
+  credentials: true
+}));
 
 
 app.get('/api/status', (req, res) => {
